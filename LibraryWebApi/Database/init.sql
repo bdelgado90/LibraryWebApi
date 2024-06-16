@@ -1,0 +1,17 @@
+ALTER LOGIN sa ENABLE;
+GO
+    
+CREATE DATABASE Library;
+GO
+
+USE Library;
+GO
+
+DROP TABLE IF EXISTS Books;
+
+CREATE TABLE Books (
+   BookId INT PRIMARY KEY IDENTITY(1,1),
+   Title VARCHAR(100) NOT NULL,
+   Author VARCHAR(100) NOT NULL,
+   PublicationYear INT NOT NULL
+);
