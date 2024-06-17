@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - LibraryWebApiDemo
+name: Build and deploy ASP.Net Core app to Azure Web App - librarywebapidemo
 
 on:
   push:
@@ -40,27 +40,18 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write #This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: .net-app
-      
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_75A5888BA55B48C486A291C95836692F }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_DC4291B1C905428EA372A87E71415FC1 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_E89539706F714947A2928AC66B87113D }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'LibraryWebApiDemo'
+          app-name: 'librarywebapidemo'
           slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BD375821D80E44E69A693203A903B277 }}
           package: .
-          
