@@ -1,10 +1,7 @@
-using System.Text;
 using LibraryWebApi.Repositories;
 using LibraryWebApi.Repositories.Interfaces;
 using LibraryWebApi.Services;
 using LibraryWebApi.Services.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +25,5 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
 app.MapControllers();
 app.Run();
