@@ -5,14 +5,9 @@ using Microsoft.Data.SqlClient;
 
 namespace LibraryWebApi.Repositories;
 
-public class DapperWrapper : IDapperWrapper
+public class DapperWrapper(string connectionString) : IDapperWrapper
 {
-    private readonly IDbConnection connection;
-
-    public DapperWrapper(string connectionString)
-    {
-        connection = new SqlConnection(connectionString);
-    }
+    private readonly IDbConnection connection = new SqlConnection(connectionString);
 
     public Task<T> QuerySingleAsync<T>(string sql, object? param = null)
     {

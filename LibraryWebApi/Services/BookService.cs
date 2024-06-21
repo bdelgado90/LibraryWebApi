@@ -5,15 +5,8 @@ using LibraryWebApi.Services.Interfaces;
 
 namespace LibraryWebApi.Services;
 
-public class BookService : IBookService
+public class BookService(IBookRepository bookRepository) : IBookService
 {
-    private readonly IBookRepository bookRepository;
-    
-    public BookService(IBookRepository bookRepository)
-    {
-        this.bookRepository = bookRepository;
-    }
-    
     public Task<int> AddBookAsync(BookRequest bookRequest)
     {   
         var book = new Book

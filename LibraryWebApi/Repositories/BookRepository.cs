@@ -3,15 +3,8 @@ using LibraryWebApi.Repositories.Interfaces;
 
 namespace LibraryWebApi.Repositories;
 
-public class BookRepository : IBookRepository
+public class BookRepository(IDapperWrapper dapperWrapper) : IBookRepository
 {
-    private readonly IDapperWrapper dapperWrapper;
-
-    public BookRepository(IDapperWrapper dapperWrapper)
-    {
-        this.dapperWrapper = dapperWrapper;
-    }
-
     public async Task<IEnumerable<Book>> GetAllBooksAsync()
     {
         const string sql = @"

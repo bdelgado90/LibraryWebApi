@@ -6,15 +6,8 @@ namespace LibraryWebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class BooksController : ControllerBase
+public class BooksController(IBookService bookService) : ControllerBase
 {
-    private readonly IBookService bookService;
-
-    public BooksController(IBookService bookService)
-    {
-        this.bookService = bookService;
-    }
-
     [HttpPost]
     public async Task<IActionResult> AddBook([FromBody] BookRequest bookRequest)
     {
